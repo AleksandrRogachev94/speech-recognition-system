@@ -1,0 +1,309 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_PROG                ICON    DISCARDABLE     "Program.ico"
+IDI_TEXT                ICON    DISCARDABLE     "WinText.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 250, 180, 149, 60
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "О программе"
+FONT 8, "Arial", 0, 0, 0x1
+BEGIN
+    ICON            IDI_PROG,IDC_MYICON,9,14,21,20,SS_REALSIZEIMAGE
+    DEFPUSHBUTTON   "OK",IDOK,61,45,30,11,WS_GROUP
+    LTEXT           "Программа для управления компьютером голосовыми командами.\nРогачёв А.Е. (С) 2012",
+                    IDC_STATIC,42,5,99,34,0,WS_EX_CLIENTEDGE
+END
+
+IDD_ADJ_SOUND_CAPTURE DIALOG DISCARDABLE  0, 0, 269, 58
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CLIPCHILDREN | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Настройка параметров записи звука"
+FONT 8, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,87,40,44,12,WS_GROUP
+    COMBOBOX        IDC_COMBO_DEVICES,104,3,163,47,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_FORMAT,104,18,163,47,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Устройство записи звука:",IDC_STATIC,5,6,91,9
+    LTEXT           "Формат записи звука:",IDC_STATIC,5,19,77,9
+    PUSHBUTTON      "Отмена",IDCANCEL,137,40,43,12,WS_GROUP
+END
+
+IDD_CNTRL_MAIN DIALOG DISCARDABLE  0, 0, 420, 42
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN
+FONT 8, "Arial"
+BEGIN
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,0,0,
+                    30,42
+    EDITTEXT        IDC_TEXT,41,18,259,22,ES_MULTILINE | ES_READONLY | NOT 
+                    WS_TABSTOP
+    CONTROL         "Progress1",IDC_PROGRESS_AMP_SOUND,"msctls_progress32",
+                    PBS_VERTICAL | WS_BORDER,31,1,8,40
+    PUSHBUTTON      "Включить",IDC_ON_OFF,41,2,41,15
+    CONTROL         136,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,311,
+                    0,21,20
+    CONTROL         137,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,341,
+                    0,17,21
+    CONTROL         138,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,369,
+                    2,19,16
+    CONTROL         135,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,398,
+                    2,20,18
+    CONTROL         139,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,341,
+                    25,17,14
+    LTEXT           "Э",IDC_STATIC,303,9,8,9,NOT WS_GROUP
+    LTEXT           "Р",IDC_STATIC,335,10,8,9,NOT WS_GROUP
+    LTEXT           "О",IDC_STATIC,361,8,8,9,NOT WS_GROUP
+    LTEXT           "И",IDC_STATIC,390,8,8,9,NOT WS_GROUP
+    LTEXT           "В",IDC_STATIC,335,28,8,9,NOT WS_GROUP
+    CONTROL         140,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,369,
+                    23,17,18
+    CONTROL         142,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,312,
+                    24,20,17
+    LTEXT           "М",IDC_STATIC,390,29,8,9,NOT WS_GROUP
+    CONTROL         144,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,398,
+                    22,21,18
+    LTEXT           "А",IDC_STATIC,304,28,8,9,NOT WS_GROUP
+    LTEXT           "У",IDC_STATIC,362,29,8,8,NOT WS_GROUP
+    EDITTEXT        IDC_WORD,88,3,212,12,ES_MULTILINE | ES_READONLY | NOT 
+                    WS_TABSTOP
+END
+
+IDD_CNTRL_MAIN_OLD DIALOG DISCARDABLE  0, 0, 303, 42
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN
+FONT 8, "Arial"
+BEGIN
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,0,0,
+                    30,42
+    EDITTEXT        IDC_TEXT,42,0,259,22,ES_MULTILINE | ES_READONLY | NOT 
+                    WS_TABSTOP
+    CONTROL         "Progress1",IDC_PROGRESS_AMP_SOUND,"msctls_progress32",
+                    PBS_VERTICAL | WS_BORDER,31,1,8,40
+    PUSHBUTTON      "Включить",IDC_ON_OFF,42,24,41,15
+    CONTROL         136,IDC_STATIC,"Static",SS_BITMAP,93,22,21,20
+    CONTROL         137,IDC_STATIC,"Static",SS_BITMAP,121,21,17,21
+    CONTROL         138,IDC_STATIC,"Static",SS_BITMAP,147,24,19,16
+    CONTROL         135,IDC_STATIC,"Static",SS_BITMAP,173,24,20,18
+    CONTROL         139,IDC_STATIC,"Static",SS_BITMAP,231,26,17,14
+    LTEXT           "Э",IDC_STATIC,86,29,6,9,NOT WS_GROUP
+    LTEXT           "Р",IDC_STATIC,115,29,6,9,NOT WS_GROUP
+    LTEXT           "О",IDC_STATIC,140,29,6,9,NOT WS_GROUP
+    LTEXT           "И",IDC_STATIC,167,29,6,9,NOT WS_GROUP
+    LTEXT           "В",IDC_STATIC,225,29,6,9,NOT WS_GROUP
+    CONTROL         140,IDC_STATIC,"Static",SS_BITMAP,256,25,17,18
+    CONTROL         142,IDC_STATIC,"Static",SS_BITMAP,202,25,20,17
+    LTEXT           "М",IDC_STATIC,276,29,6,9,NOT WS_GROUP
+    CONTROL         144,IDC_STATIC,"Static",SS_BITMAP,282,24,21,18
+    LTEXT           "А",IDC_STATIC,193,29,6,9,NOT WS_GROUP
+    LTEXT           "У",IDC_STATIC,250,30,6,8,NOT WS_GROUP
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_MAIN MENU DISCARDABLE 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Включить &звуковое управление", IDM_SERVICE
+        MENUITEM SEPARATOR
+        MENUITEM "Выполнять &команды",          IDM_DO_COMMANDS
+        MENUITEM "Выводить в окно распознанные слова", IDM_OUT_WORDS
+        MENUITEM SEPARATOR
+        MENUITEM "Окно для просмотра потока звуков", IDM_WIN_TEXT
+        MENUITEM "Настройка &захвата звука",    IDM_ADJUST_SOUND
+        MENUITEM SEPARATOR
+        MENUITEM "Справка по работе с программой", IDM_HELP
+        MENUITEM "&О программе",                IDM_ABOUT
+        MENUITEM SEPARATOR
+        MENUITEM "&Выход",                      IDM_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDBI_MIC                BITMAP  DISCARDABLE     "IconMic.bmp"
+IDBI_EXPLORER           BITMAP  DISCARDABLE     "Icon_Explorer.bmp"
+IDBI_NOTEPAD            BITMAP  DISCARDABLE     "Icon_Notepad.bmp"
+IDBI_PAINT              BITMAP  DISCARDABLE     "Icon_Paint.bmp"
+IDBI_WORD               BITMAP  DISCARDABLE     "Icon_Word.bmp"
+IDBI_SHUT_DOWN          BITMAP  DISCARDABLE     "Icon_ShutDown.bmp"
+IDBI_HELP               BITMAP  DISCARDABLE     "Icon_Help.bmp"
+IDBI_STOP               BITMAP  DISCARDABLE     "Icon_Stop.bmp"
+IDBI_STOP_REC_SND       BITMAP  DISCARDABLE     "Icon_StopRecSnd.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CNTRL_MAIN, DIALOG
+    BEGIN
+        RIGHTMARGIN, 303
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Err_DLLProg         "Не найдены функции библиотеки *.dll !"
+    IDS_Err_NoFileDLL       "Отсутствует файл библиотеки *.dll !"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Err_LoadDLL         "Ошибка при загрузке библиотеки *.dll !"
+    IDS_ErrParFindPeaks     "Ошибка в параметрах выделения спектральных линий !"
+    IDS_NoNNW_Found         "Не прочитаны файлы с нейронными сетями !\nПрограмма не откроется.\nДля получения необходимых файлов\nобратитесь к разработчику."
+    IDS_Mess_CanNotExit     "Выключите режим распознавания звука.\nПосле этого можно закрыть программу."
+    IDS_Btn_Recogn          "Включить"
+    IDS_Btn_Stop            "Стоп"
+    IDS_Command_ShutDown    "Выход из системы"
+    IDS_Command_CloseWin    "Закрыть программу"
+    IDS_Command_StopRec     "Остановка"
+    IDS_Command_OpenNotepad "Открыть блокнот"
+    IDS_Command_OpenPaint   "Открыть редактор изображений"
+    IDS_Command_OpenWord    "Открыть ""Microsoft Word"""
+    IDS_Command_ShowHelp    "Показать справку по программе"
+    IDS_Err_NoHelpFile      "Отсутствует файл справки !"
+    IDS_Command_IntExpl     "Открыть ""Internet Explorer"""
+    IDS_CanNotCloseProg     "Программу ""Voice Commander"" нельзя закрыть голосовым управлением !"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Command_ShutDownQuest 
+                            "Выйти из системы ? Для подтверждения повторите команду."
+    IDS_NoDict_Found        "Файл словаря не найден !"
+    IDS_NoDict_Loaded       "Ошибка при загрузке словаря !"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDA_MAIN ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,1010 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_PROG                ICON    DISCARDABLE     "Program.ico"
+IDI_NNW                 ICON    DISCARDABLE     "ViewNNW.ico"
+IDI_TEXT                ICON    DISCARDABLE     "WinText.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+ID_MENU_MAIN MENU DISCARDABLE 
+BEGIN
+    POPUP "&Файл"
+    BEGIN
+        MENUITEM "Окрыть файл WAV",             IDM_OPEN_WAV
+        MENUITEM "Сохранить файл WAV",          IDM_SAVE_WAV
+        MENUITEM SEPARATOR
+        MENUITEM "Выход",                       IDM_EXIT
+    END
+    POPUP "Настройки"
+    BEGIN
+        MENUITEM "Параметры спектрального разложения", IDM_ADJUST_PAR_SPECTR
+        MENUITEM "Параметры выделения спектральных линий", 
+                                                IDM_ADJUST_PAR_PEAKS
+        MENUITEM SEPARATOR
+        MENUITEM "Захват звука",                IDM_ADJ_SOUND_CAPTURE
+        MENUITEM SEPARATOR
+        MENUITEM "Обработка потока символов",   IDM_SET_OUTPUT
+    END
+    POPUP "Выполнить"
+    BEGIN
+        MENUITEM "Расчет спектральной диаграммы", IDM_COMPUTE
+        MENUITEM SEPARATOR
+        MENUITEM "Открытие файла базы данных",  IDM_OPEN_DB
+        MENUITEM "Редактирование базы данных и тренировка нейронной сети", 
+                                                IDM_DLG_DB
+    END
+    POPUP "Нейронные сети"
+    BEGIN
+        POPUP "&Загрузить"
+        BEGIN
+            MENUITEM "Для гласных звуков",          IDM_NEUR_LOAD_VOWEL
+            MENUITEM "Для согласных звуков",        IDM_NEUR_LOAD_CONSONANT
+            MENUITEM "Все (для спектра)",           IDM_NEUR_LOAD_SPECTR
+        END
+        POPUP "&Сохранить"
+        BEGIN
+            MENUITEM "Для гласных звуков",          IDM_NEUR_SAVE_VOWEL
+            MENUITEM "Для согласных звуков",        IDM_NEUR_SAVE_CONSONANT
+            MENUITEM "Все (для спектра)",           IDM_NEUR_SAVE_SPECTR
+        END
+        POPUP "Сохранить как ..."
+        BEGIN
+            MENUITEM "Для гласных звуков",          IDM_NEUR_SAVEAS_VOWEL
+            MENUITEM "Для согласных звуков",        IDM_NEUR_SAVEAS_CONSONANT
+
+            MENUITEM "Все (для спектра)",           IDM_NEUR_SAVEAS_SPECTR
+        END
+        MENUITEM SEPARATOR
+        POPUP "Использовать для распознавания:"
+        BEGIN
+            MENUITEM "&Раздельные сети для гласных и согласных", 
+                                                    IDM_USE_NNW_TWO_SEP
+            MENUITEM "&Одну многослойную сеть прямого распространения", 
+                                                    IDM_USE_NNW_SINGLE_SPECTR
+
+            MENUITEM "Сеть &Кохонена",              IDM_USE_NNW_COHONEN
+        END
+    END
+    POPUP "Окно"
+    BEGIN
+        MENUITEM "Окно визуализации нейронной сети", IDM_WIN_VISUAL_NNW
+        MENUITEM "Текст - результат распознавания", IDM_WIN_TEXT
+    END
+    POPUP "&Помощь"
+    BEGIN
+        MENUITEM "&Справка по работе с программой", IDM_HELP
+        MENUITEM SEPARATOR
+        MENUITEM "&О программе...",             IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDA_MAIN ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 250, 180, 159, 60
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "О программе"
+FONT 8, "Arial", 0, 0, 0x1
+BEGIN
+    ICON            IDI_PROG,IDC_MYICON,9,14,20,20,SS_REALSIZEIMAGE
+    DEFPUSHBUTTON   "OK",IDOK,63,45,30,11,WS_GROUP
+    LTEXT           "Программа для анализа и         распознавания речи.             Рогачёв А.Е. (С) 2011",
+                    IDC_STATIC,44,10,98,28,0,WS_EX_CLIENTEDGE
+END
+
+IDD_PAR_PROC_SPECTR DIALOGEX 0, 0, 232, 81
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры спектрального разложения"
+FONT 8, "Arial", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,62,59,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,119,59,50,14
+    EDITTEXT        IDC_TIME_WIDTH,145,23,66,12,ES_AUTOHSCROLL
+    LTEXT           "Ширина временного окна",IDC_STATIC,7,24,90,8
+    LTEXT           "Шаг перемещения временного окна",IDC_STATIC,7,37,127,9
+    EDITTEXT        IDC_TIME_STEP,145,36,66,12,ES_AUTOHSCROLL
+    LTEXT           "Метод сглаживания:",IDC_STATIC,7,7,71,11
+    COMBOBOX        IDC_METHOD,87,6,127,74,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_TRANSPARENT
+END
+
+IDD_CNTRL_MAIN DIALOGEX 0, 0, 832, 49
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN
+FONT 8, "Arial", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_COORDTIME,57,29,52,12,ES_AUTOHSCROLL | ES_READONLY,
+                    WS_EX_RIGHT
+    EDITTEXT        IDC_COORDFREQ,175,29,51,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Время (с):",IDC_STATIC,20,31,36,8
+    LTEXT           "Частота(Гц):",IDC_STATIC,130,31,43,8
+    EDITTEXT        IDC_AMPL_DIAG,486,30,43,13,ES_RIGHT | ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "+",IDC_AMPLP_DIAG,472,30,14,6
+    PUSHBUTTON      "-",IDC_AMPLM_DIAG,472,37,14,6
+    PUSHBUTTON      "OK",IDC_AMPLOK_DIAG,541,30,22,12
+    GROUPBOX        "Координаты курсора",IDC_STATIC,1,18,337,29,0,
+                    WS_EX_TRANSPARENT
+    GROUPBOX        "Амплитуда (диаграмма):",IDC_STATIC,457,18,110,29,0,
+                    WS_EX_TRANSPARENT
+    EDITTEXT        IDC_FILE_NAME,111,3,115,15,ES_AUTOHSCROLL | ES_READONLY,
+                    WS_EX_RIGHT
+    CTEXT           "Имя файла:",IDC_STATIC,63,6,41,10
+    LTEXT           "Ампл.:",IDC_STATIC,257,30,25,10
+    EDITTEXT        IDC_COORDAMPL,282,29,52,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Амплитуда (сигнал):",IDC_STATIC,341,18,114,29,0,
+                    WS_EX_TRANSPARENT
+    PUSHBUTTON      "+",IDC_AMPLP_SIG,358,30,14,6
+    PUSHBUTTON      "-",IDC_AMPLM_SIG,358,37,14,6
+    EDITTEXT        IDC_AMPL_SIG,372,30,43,13,ES_RIGHT | ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "OK",IDC_AMPLOK_SIG,426,30,25,12
+    CONTROL         "Progress1",IDC_PROGR,"msctls_progress32",WS_BORDER,297,
+                    5,100,10
+    EDITTEXT        IDC_PERC,399,3,22,13,ES_AUTOHSCROLL | ES_READONLY,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "Прослушать",IDC_PLAY_SND,768,4,61,12
+    EDITTEXT        IDC_AMPL_GRSP,666,30,43,13,ES_RIGHT | ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "+",IDC_AMPLP_GRSP,652,30,14,6
+    PUSHBUTTON      "-",IDC_AMPLM_GRSP,652,37,14,6
+    PUSHBUTTON      "OK",IDC_AMPLOK_GRSP,720,30,26,12
+    GROUPBOX        "Амплитуда (спектр):",IDC_STATIC,632,18,117,29,0,
+                    WS_EX_TRANSPARENT
+    PUSHBUTTON      "Открыть",IDC_OPEN_FILE,19,3,40,12
+    PUSHBUTTON      "Обработка",IDC_PROCESSING,247,3,48,12
+    PUSHBUTTON      "Запись",IDC_CAPT_SND,768,34,61,12
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,3,3,
+                    14,12
+    CONTROL         136,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,635,
+                    29,14,12
+    CONTROL         135,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,460,
+                    31,10,9
+    CONTROL         137,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,343,
+                    30,14,12
+    CONTROL         137,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,240,
+                    29,14,12
+    CONTROL         139,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,231,
+                    3,14,12
+    CONTROL         140,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,751,
+                    3,14,12
+    CONTROL         141,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,752,
+                    33,14,12
+    CONTROL         142,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,4,
+                    29,14,12
+    CONTROL         136,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,114,
+                    29,14,12
+    CONTROL         135,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,229,
+                    31,10,9
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,416,
+                    32,9,9
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,530,
+                    32,9,9
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,710,
+                    32,9,8
+    CONTROL         144,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,425,
+                    3,14,12
+    PUSHBUTTON      "Настройка",IDC_ADJ_SPECTR,441,3,48,12
+    CONTROL         145,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,574,
+                    3,14,12
+    PUSHBUTTON      "Тренировка",IDC_DBS_NNW,590,3,55,12
+    PUSHBUTTON      "ОткрытьБД",IDC_OPEN_DBS,508,3,63,12
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,492,
+                    3,14,12
+    PUSHBUTTON      "Распознавание",IDC_CAPT_REC,768,19,61,12
+    CONTROL         159,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,752,
+                    19,14,12
+    PUSHBUTTON      "Текст",IDC_WIN_TEXT,663,3,36,12
+    CONTROL         160,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,648,
+                    3,14,12
+    PUSHBUTTON      "Сеть",IDC_WIN_VIEW_NNW,716,3,33,12
+    CONTROL         162,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,701,
+                    3,14,12
+    CONTROL         "Гласн.Сонор.",IDC_RADIO_SHOW_VOWEL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,571,28,57,8
+    CONTROL         "Согласные",IDC_RADIO_SHOW_CONS,"Button",
+                    BS_AUTORADIOBUTTON,571,37,50,8
+    GROUPBOX        "Показывать:",IDC_STATIC,569,18,61,29,0,
+                    WS_EX_TRANSPARENT
+END
+
+IDD_DATABASE DIALOGEX 0, 0, 452, 454
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CLIPCHILDREN | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Редактирование базы данных и тренировка нейронной сети"
+FONT 8, "Arial", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,199,433,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,259,433,50,14
+    LISTBOX         IDC_DBF,3,28,216,145,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    LISTBOX         IDC_DBS,224,28,223,145,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_HSCROLL | WS_TABSTOP
+    CONTROL         "Использовать",IDC_SOUND_USE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,225,5,63,11
+    CONTROL         "Тренировка",IDC_SOUND_TRAIN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,291,5,54,11
+    CONTROL         "Использовать",IDC_FILE_USE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,5,63,11
+    CONTROL         "Тренировка",IDC_FILE_TRAIN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,70,5,58,11
+    PUSHBUTTON      "Сохранить",IDC_SAVE,137,433,50,14
+    CONTROL         "Progress1",IDC_PROGR,"msctls_progress32",WS_BORDER,81,
+                    411,173,10
+    EDITTEXT        IDC_ERR_TRAIN,328,410,57,13,ES_AUTOHSCROLL | ES_READONLY,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "Тренировка",IDC_TRAINING,28,409,48,14
+    EDITTEXT        IDC_ERR_CONTR,387,410,57,13,ES_AUTOHSCROLL | ES_READONLY,
+                    WS_EX_RIGHT
+    LTEXT           "Ошибка:",IDC_STATIC,296,412,29,10
+    LTEXT           "Тренировка",IDC_STATIC,342,400,42,8
+    LTEXT           "Контроль",IDC_STATIC,403,399,34,8
+    GROUPBOX        "Тренировка нейронной сети",IDC_STATIC,5,339,443,89,0,
+                    WS_EX_TRANSPARENT
+    LTEXT           "Использ. Тренир. Пол Файл Имя - %ист. %ложь %нет Ошибка",
+                    IDC_STATIC,4,17,216,10
+    LTEXT           "Использ. Тренир. Повторы Звук Время (начало конец)",
+                    IDC_STATIC,225,17,191,10
+    PUSHBUTTON      "Прослушать",IDC_PLAY_SND,392,193,55,14
+    CONTROL         140,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,375,
+                    195,14,12
+    CONTROL         145,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,11,
+                    410,14,12
+    GROUPBOX        "Задание параметров нейронной сети",IDC_STATIC,5,309,443,
+                    30,0,WS_EX_TRANSPARENT
+    CONTROL         144,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,13,
+                    351,14,12
+    PUSHBUTTON      "Параметры сети",IDC_ADJUST_NNW,31,321,64,14
+    PUSHBUTTON      "Параметры тренировки",IDC_ADJUST_TRAIN,31,350,93,14
+    CONTROL         145,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,13,
+                    322,14,12
+    EDITTEXT        IDC_NUM_CYCLE,257,410,36,13,ES_AUTOHSCROLL | ES_READONLY,
+                    WS_EX_RIGHT
+    LTEXT           "№ цикла",IDC_STATIC,258,400,32,10
+    EDITTEXT        IDC_STEP_TRAIN,197,351,66,13,ES_AUTOHSCROLL,WS_EX_RIGHT
+    LTEXT           "Постоянный шаг:",IDC_HEADER_ALPHA,137,353,59,8,NOT 
+                    WS_GROUP
+    PUSHBUTTON      "OK",IDC_APPLY,412,352,25,12
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,401,
+                    354,9,9
+    CONTROL         "Гласные звуки",IDC_RADIO_VOWEL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,251,67,8
+    CONTROL         "Согласные звуки",IDC_RADIO_CONS,"Button",
+                    BS_AUTORADIOBUTTON,10,265,74,8
+    CONTROL         "Все (для спектра)",IDC_RADIO_SPECTR,"Button",
+                    BS_AUTORADIOBUTTON,10,278,75,10
+    GROUPBOX        "Выбор сети: имя файла, чтение и запись",IDC_STATIC,5,
+                    240,443,69,0,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_NAME_NNW_VOWEL,88,249,161,13,ES_AUTOHSCROLL | 
+                    ES_READONLY,WS_EX_RIGHT
+    EDITTEXT        IDC_NAME_NNW_CONSONANT,88,263,161,13,ES_AUTOHSCROLL | 
+                    ES_READONLY,WS_EX_RIGHT
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,252,
+                    249,14,12
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,252,
+                    263,14,12
+    PUSHBUTTON      "Загрузить",IDC_OPEN_NNW_VOWEL,268,249,48,12
+    PUSHBUTTON      "Загрузить",IDC_OPEN_NNW_CONSONANT,268,263,48,12
+    CONTROL         147,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,320,
+                    249,14,12
+    CONTROL         147,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,320,
+                    263,14,12
+    PUSHBUTTON      "Сохранить",IDC_SAVE_NNW_VOWEL,336,249,42,12
+    PUSHBUTTON      "Сохранить",IDC_SAVE_NNW_CONSONANT,336,263,42,12
+    PUSHBUTTON      "Сохранить как ...",IDC_SAVE_AS_NNW_VOWEL,380,249,64,12
+    PUSHBUTTON      "Сохранить как ...",IDC_SAVE_AS_NNW_CONSONANT,380,263,64,
+                    12
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,200,
+                    322,14,11
+    PUSHBUTTON      "Загрузить",IDC_OPEN_PAR_NNW,216,321,40,14
+    CONTROL         147,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,260,
+                    322,14,11
+    PUSHBUTTON      "Сохранить",IDC_SAVE_PAR_NNW,276,321,42,14
+    PUSHBUTTON      "Сохранить как ...",IDC_SAVE_AS_PAR_NNW,320,321,64,14
+    PUSHBUTTON      "Новая сеть",IDC_INIT_NNW,98,321,51,14
+    PUSHBUTTON      "Из сети",IDC_GET_PAR_FROM_NNW,151,321,37,14
+    EDITTEXT        IDC_ADAPT_STEP_MIN,335,347,62,13,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "Статистика",IDC_STATISTICS,21,224,51,14
+    PUSHBUTTON      "Принять",IDC_ACCEPT_DBF,11,175,40,15
+    PUSHBUTTON      "Добавить",IDC_ADD_DBF,124,175,42,15
+    PUSHBUTTON      "Вставить",IDC_INS_DBF,67,175,41,15
+    PUSHBUTTON      "Удалить",IDC_DEL_DBF,182,175,38,15
+    CONTROL         146,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,168,
+                    177,14,12
+    CONTROL         150,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,52,
+                    177,14,12
+    CONTROL         151,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,109,
+                    177,14,12
+    EDITTEXT        IDC_NAME_FILE_DBF,28,194,131,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    EDITTEXT        IDC_NAME_PERSON,57,209,73,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_NAME_SOUND,251,195,18,13,ES_AUTOHSCROLL,WS_EX_RIGHT
+    EDITTEXT        IDC_REPEATS,308,195,22,13,ES_AUTOHSCROLL,WS_EX_RIGHT
+    PUSHBUTTON      "Принять",IDC_ACCEPT_DBS,237,175,40,15
+    PUSHBUTTON      "Добавить",IDC_ADD_DBS,350,175,42,15
+    PUSHBUTTON      "Вставить",IDC_INS_DBS,294,175,41,15
+    PUSHBUTTON      "Удалить",IDC_DEL_DBS,409,175,38,15
+    CONTROL         146,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,394,
+                    176,14,12
+    CONTROL         150,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,279,
+                    176,14,12
+    CONTROL         151,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,336,
+                    176,14,12
+    LTEXT           "Повторы:",IDC_STATIC,273,197,34,10
+    LTEXT           "Звук:",IDC_STATIC,228,197,19,10
+    CONTROL         "муж.",IDC_RADIO_GEND_M,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,156,208,29,9
+    CONTROL         "жен.",IDC_RADIO_GEND_W,"Button",BS_AUTORADIOBUTTON,156,
+                    217,30,8
+    LTEXT           "Файл:",IDC_STATIC,3,195,22,10
+    PUSHBUTTON      "Выбрать",IDC_BROWSE,177,192,43,15
+    LTEXT           "Имя человека:",IDC_STATIC,3,211,52,10
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,2,
+                    178,9,9
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,226,
+                    179,9,9
+    LTEXT           "Пол:",IDC_STATIC,136,211,18,10
+    PUSHBUTTON      "Блокировать",IDC_BLOCK_TIME,392,2,55,15
+    CONTROL         161,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,376,
+                    4,14,12
+    CONTROL         163,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,5,
+                    226,14,11
+    CONTROL         164,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,161,
+                    194,14,12
+    CONTROL         "Spin1",IDC_SPIN_REPEATS,"msctls_updown32",UDS_ARROWKEYS,
+                    330,194,11,13
+    CONTROL         166,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,328,
+                    401,12,8
+    CONTROL         167,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,388,
+                    401,12,8
+    PUSHBUTTON      "Фурье и спектральные линии",IDC_PROC_SPECTR_PEAKS,28,
+                    384,103,14
+    CONTROL         136,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,11,
+                    386,14,11
+    CONTROL         "Для всех файлов БД",IDC_CHECK_ALL_DATA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,135,386,86,11
+    PUSHBUTTON      "Тест",IDC_RESULTS,96,224,46,14
+    CONTROL         163,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,80,
+                    226,14,11
+    CONTROL         "Для всех",IDC_CHECK_ALL_RES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,226,46,11
+    PUSHBUTTON      "Синтез",IDC_PLAY_SND_PEAKS,390,215,55,14
+    CONTROL         140,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,373,
+                    216,14,11
+    EDITTEXT        IDC_FREQ_SYNTHESIS,330,215,40,13,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    LTEXT           "Частота (Гц):",IDC_STATIC,281,219,47,9
+    GROUPBOX        "Синтез звука",IDC_STATIC,275,208,173,35,0,
+                    WS_EX_TRANSPARENT
+    EDITTEXT        IDC_AMP_SYNTHESIS,330,228,40,13,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    LTEXT           "Амплитуда:",IDC_STATIC,282,230,43,9
+    EDITTEXT        IDC_NAME_NNW_SPECTR,88,277,161,13,ES_AUTOHSCROLL | 
+                    ES_READONLY,WS_EX_RIGHT
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,252,
+                    277,14,12
+    PUSHBUTTON      "Загрузить",IDC_OPEN_NNW_SPECTR,268,277,48,12
+    CONTROL         147,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,320,
+                    277,14,12
+    PUSHBUTTON      "Сохранить",IDC_SAVE_NNW_SPECTR,336,277,42,12
+    PUSHBUTTON      "Сохранить как ...",IDC_SAVE_AS_NNW_SPECTR,380,277,64,12
+    CONTROL         "Коррекция ВЧ",IDC_CHECK_SYNTH_CORR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,372,232,62,9
+    LTEXT           "Ограничения\n(мин. макс.)\nадаптивного шага:",
+                    IDC_HEADER_ALPHA_LIM,267,348,64,24,NOT WS_GROUP
+    EDITTEXT        IDC_ADAPT_STEP_MAX,335,361,62,13,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    EDITTEXT        IDC_METH_TRAIN,78,369,185,12,ES_AUTOHSCROLL | 
+                    ES_READONLY,WS_EX_RIGHT
+    LTEXT           "Метод тренировки:",IDC_STATIC,10,370,66,8,NOT WS_GROUP
+    PUSHBUTTON      "Входные данные",IDC_SET_INP_DATA,246,385,74,14
+    CONTROL         158,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,230,
+                    387,14,11
+    CONTROL         "Сеть Кохонена",IDC_RADIO_COHONEN,"Button",
+                    BS_AUTORADIOBUTTON,10,292,65,10
+    EDITTEXT        IDC_NAME_NNW_COHONEN,88,291,161,13,ES_AUTOHSCROLL | 
+                    ES_READONLY,WS_EX_RIGHT
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,252,
+                    291,14,12
+    PUSHBUTTON      "Загрузить",IDC_OPEN_NNW_COHONEN,268,291,48,12
+    CONTROL         147,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,320,
+                    291,14,12
+    PUSHBUTTON      "Сохранить",IDC_SAVE_NNW_COHONEN,336,291,42,12
+    PUSHBUTTON      "Сохранить как ...",IDC_SAVE_AS_NNW_COHONEN,380,291,64,
+                    12
+END
+
+IDD_PAR_PEAKS DIALOG DISCARDABLE  0, 0, 301, 185
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Параметры выделения спектральных линий"
+FONT 8, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,96,164,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,156,164,50,14
+    EDITTEXT        IDC_COE_SMALL_PEAKS,216,20,76,12,ES_AUTOHSCROLL
+    LTEXT           "Коэффициент начального отбрасывания максимумов:",
+                    IDC_STATIC,6,22,188,8
+    EDITTEXT        IDC_FREQ_MIN,216,35,52,12,ES_AUTOHSCROLL
+    LTEXT           "Минимальная частота для нахождения основной линии (Гц):",
+                    IDC_STATIC,6,37,207,8
+    EDITTEXT        IDC_FREQ_MAX,216,51,52,12,ES_AUTOHSCROLL
+    LTEXT           "Максимальная частота (Гц):",IDC_STATIC,6,53,100,8
+    EDITTEXT        IDC_ERR_FREQ,216,67,52,12,ES_AUTOHSCROLL
+    LTEXT           "Допускаемая относит. ошибка по частоте при поиске линий:",
+                    IDC_STATIC,5,68,207,8
+    EDITTEXT        IDC_WID_PEAKS,216,83,52,12,ES_AUTOHSCROLL
+    LTEXT           "Относительная полуширина линий (от основной частоты):",
+                    IDC_STATIC,6,84,198,9
+    EDITTEXT        IDC_LEV_POW_PEAKS,234,115,52,12,ES_AUTOHSCROLL
+    LTEXT           "Минимальный коэффициент мощности, содержащейся в линиях:",
+                    IDC_STATIC,6,116,224,8
+    CONTROL         "Коррекция частоты",IDC_CORRECT_FREQ,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,131,84,8
+    EDITTEXT        IDC_AMP_CORR_FREQ,226,142,67,12,ES_AUTOHSCROLL
+    LTEXT           "Амплитуда линий, по которым проводится коррекция частоты:",
+                    IDC_STATIC,6,143,216,8
+    EDITTEXT        IDC_COE_RECOGN_PEAK,215,99,52,12,ES_AUTOHSCROLL
+    LTEXT           "Пороговый уровень распознавания пиков:",IDC_STATIC,6,
+                    102,148,8
+    EDITTEXT        IDC_AMP_THRESHOLD,216,5,76,12,ES_AUTOHSCROLL
+    LTEXT           "Пороговый уровень отбрасывания фона:",IDC_STATIC,6,7,
+                    142,8
+END
+
+IDD_PAR_NNW DIALOGEX 0, 0, 432, 193
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Задание параметров нейронной сети"
+FONT 8, "Arial", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Выход",IDOK,308,173,50,14
+    LTEXT           "Функция активации:",IDC_STATIC,6,161,71,8
+    COMBOBOX        IDC_FUN_ACT,79,159,156,74,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_TRANSPARENT
+    LISTBOX         IDC_LIST_LAYERS,5,17,228,117,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Число нейронов, функция активации, пороги 'Tj', смещения 'Sij'",
+                    IDC_STATIC,6,5,214,11
+    LTEXT           "Число нейронов:",IDC_STATIC,6,141,58,9
+    EDITTEXT        IDC_NUM_NEURONS,65,140,30,12,ES_AUTOHSCROLL | ES_NUMBER
+    PUSHBUTTON      "Принять",IDC_ACCEPT,18,174,34,14
+    PUSHBUTTON      "Добавить",IDC_ADD,189,175,45,14
+    PUSHBUTTON      "Вставить",IDC_INS,70,174,41,14
+    PUSHBUTTON      "Удалить",IDC_DEL,131,175,38,14
+    CONTROL         146,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,115,
+                    176,14,11
+    PUSHBUTTON      "Прочитать",IDC_READ,263,152,60,14
+    PUSHBUTTON      "Сохранить как",IDC_WRITE,347,152,60,14
+    CONTROL         134,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,247,
+                    154,14,11
+    CONTROL         147,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,331,
+                    154,14,11
+    CONTROL         148,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,2,
+                    176,14,11
+    CONTROL         150,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,55,
+                    176,14,11
+    CONTROL         151,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,173,
+                    176,14,11
+    GROUPBOX        "Тип нейронной сети:",IDC_STATIC,241,1,140,30
+    CONTROL         "Гласные",IDC_RADIO_VOWEL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,245,11,43,8
+    CONTROL         "Согласные",IDC_RADIO_CONS,"Button",BS_AUTORADIOBUTTON,
+                    245,20,51,10
+    CONTROL         "Использование порогов 'Tj'",IDC_CHECK_THR_USE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,101,139,107,8
+    CONTROL         "Все (для спектра)",IDC_RADIO_SPECTR,"Button",
+                    BS_AUTORADIOBUTTON,301,15,75,10
+    CONTROL         "Использование смещений 'Sij'",IDC_CHECK_SHIFTS_USE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,101,147,117,11
+    CONTROL         "Коррекция",IDC_FREQ_CORR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,247,92,50,8
+    GROUPBOX        "Частотная коррекция входов нейронной сети",IDC_STATIC,
+                    241,81,187,52
+    PUSHBUTTON      "Параметры",IDC_PARAM_FREQ_CORR_PEAKS,371,98,50,14
+    GROUPBOX        "Тип входных параметров сети",IDC_STATIC,241,32,187,48
+    CONTROL         "Спектральные линии, треугольное разложение",
+                    IDC_RADIO_TYP_NNW_PEAKS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,245,42,176,8
+    CONTROL         "Спектр - разложение по треугольным функциям",
+                    IDC_RADIO_TYP_NNW_SPECTR_TRI,"Button",BS_AUTORADIOBUTTON,
+                    245,51,182,8
+    CONTROL         "Спектр - треугольное разложение огибающей",
+                    IDC_RADIO_TYP_NNW_SPECTR_TRI_ENV,"Button",
+                    BS_AUTORADIOBUTTON,245,60,171,8
+    CONTROL         "Весь спектр",IDC_RADIO_TYP_NNW_SPECTR_ALL,"Button",
+                    BS_AUTORADIOBUTTON,245,69,57,8
+    PUSHBUTTON      "Параметры",IDC_PARAM_FREQ_CORR_SPECTR,371,115,50,14
+    LTEXT           "Для спектральных линий:",IDC_STATIC,279,102,89,8
+    LTEXT           "Для спектра в целом:",IDC_STATIC,279,117,77,8
+END
+
+IDD_PAR_TRAIN_NNW DIALOG DISCARDABLE  0, 0, 254, 198
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Параметры тренировки нейронной сети"
+FONT 8, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,72,177,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,132,177,50,14
+    EDITTEXT        IDC_NUM_STEPS_RAND,185,6,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "Число шагов случайного подбора коэффициентов:",
+                    IDC_STATIC,6,8,174,8
+    EDITTEXT        IDC_NUM_STEPS_TRAIN,185,22,36,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Число шагов тренировки в одном цикле:",IDC_STATIC,6,24,
+                    141,8
+    EDITTEXT        IDC_STEP_TRAIN,127,75,52,12,ES_AUTOHSCROLL
+    LTEXT           "Постоянный шаг при тренировке:",IDC_STATIC,6,77,117,10
+    EDITTEXT        IDC_NUM_RAND_SEQ,184,39,63,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "Число, задающее случайную последовательность:",
+                    IDC_STATIC,5,40,175,8
+    CONTROL         "Адаптивный шаг",IDC_ADAPTIVE_STEP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,97,71,8
+    EDITTEXT        IDC_ASTEP_MAX,147,114,64,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "Минимальный:",IDC_STATIC,90,102,52,9
+    EDITTEXT        IDC_ASTEP_MIN,147,100,64,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "Максимальный:",IDC_STATIC,90,116,55,9
+    GROUPBOX        "Ограничения адаптивного  шага",IDC_STATIC,84,90,134,40
+    CONTROL         "Случайный выбор образцов в последовательных методах",
+                    IDC_RAND_SAMPLES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,160,217,8
+    COMBOBOX        IDC_COMBO_METH,72,57,176,47,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Метод тренировки:",IDC_STATIC,5,58,65,9
+    CONTROL         "Одинаковый адаптивный шаг для всех слоёв",
+                    IDC_EQUAL_ADAPT_STEP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,133,172,8
+    EDITTEXT        IDC_COE_ADAPT_STEP,189,145,58,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Замедляющий коэффициент для адаптивного шага:",
+                    IDC_STATIC,6,147,176,8
+END
+
+IDD_ADJ_SOUND_CAPTURE DIALOG DISCARDABLE  0, 0, 269, 58
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CLIPCHILDREN | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Настройка параметров записи звука"
+FONT 8, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,87,40,44,12,WS_GROUP
+    COMBOBOX        IDC_COMBO_DEVICES,104,3,163,47,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_FORMAT,104,18,163,47,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Устройство записи звука:",IDC_STATIC,5,6,91,9
+    LTEXT           "Формат записи звука:",IDC_STATIC,5,19,77,9
+    PUSHBUTTON      "Отмена",IDCANCEL,137,40,43,12,WS_GROUP
+END
+
+IDD_CNTRL_VIEW_NNW DIALOGEX 0, 0, 609, 31
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN
+FONT 8, "Arial", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_AMPL_NEUR,33,12,57,12,ES_RIGHT | ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "+",IDC_AMPLP_NEUR,18,11,14,6
+    PUSHBUTTON      "-",IDC_AMPLM_NEUR,18,18,14,6
+    PUSHBUTTON      "OK",IDC_AMPLOK_NEUR,103,13,22,11
+    GROUPBOX        " Амплитуда нормировки нейронов",IDC_STATIC,0,1,129,27,0,
+                    WS_EX_TRANSPARENT
+    CONTROL         145,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,2,
+                    12,14,11
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,93,
+                    14,9,8
+    EDITTEXT        IDC_AMPL_SYN,165,12,57,12,ES_RIGHT | ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "+",IDC_AMPLP_SYN,149,11,14,6
+    PUSHBUTTON      "-",IDC_AMPLM_SYN,149,18,14,6
+    PUSHBUTTON      "OK",IDC_AMPLOK_SYN,236,13,22,11
+    GROUPBOX        " Амплитуда нормировки аксонов",IDC_STATIC,130,1,132,27,
+                    0,WS_EX_TRANSPARENT
+    CONTROL         152,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,133,
+                    12,14,11
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,225,
+                    14,9,9
+    PUSHBUTTON      "Работа",IDC_WORK,506,2,57,11
+    CONTROL         154,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,488,
+                    2,14,11
+    CONTROL         152,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,488,
+                    16,14,11
+    GROUPBOX        "Тип нейронной сети:",IDC_STATIC,396,0,91,28,0,
+                    WS_EX_TRANSPARENT
+    CONTROL         "Гласные",IDC_RADIO_VOWEL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,400,9,43,8
+    CONTROL         "Согласные",IDC_RADIO_CONS,"Button",BS_AUTORADIOBUTTON,
+                    400,17,49,10
+    EDITTEXT        IDC_AMPL_INP,299,12,57,12,ES_RIGHT | ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "+",IDC_AMPLP_INP,283,11,14,6
+    PUSHBUTTON      "-",IDC_AMPLM_INP,283,18,14,6
+    PUSHBUTTON      "OK",IDC_AMPLOK_INP,369,13,22,11
+    GROUPBOX        " Амплитуда нормировки входов",IDC_STATIC,263,1,132,27,0,
+                    WS_EX_TRANSPARENT
+    CONTROL         158,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,267,
+                    12,14,11
+    CONTROL         143,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE,359,
+                    14,9,9
+    CONTROL         "Спектр",IDC_RADIO_SPECTR,"Button",BS_AUTORADIOBUTTON,
+                    449,12,37,10
+    CONTROL         "Аксоны",IDC_RADIO_AXONS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,503,14,41,8
+    CONTROL         "Передача",IDC_RADIO_TRANSFER,"Button",
+                    BS_AUTORADIOBUTTON,503,22,47,8
+    CONTROL         "Смещения",IDC_RADIO_SHIFTS,"Button",BS_AUTORADIOBUTTON,
+                    551,14,49,8
+    CONTROL         "Возбуждение",IDC_RADIO_EXCITATION,"Button",
+                    BS_AUTORADIOBUTTON,551,23,57,8
+END
+
+IDD_STAT_SOUNDS DIALOG DISCARDABLE  250, 180, 202, 214
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "Статистика по образцам базы данных"
+FONT 8, "Arial"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,87,197,30,11,WS_GROUP
+    LISTBOX         IDC_LIST,5,16,192,172,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Звук - интервалы (трен., конт.) - образцы (трен., конт.)",
+                    IDC_STATIC,6,4,192,9
+END
+
+IDD_PAR_FREQ_CORR_PEAKS DIALOG DISCARDABLE  0, 0, 208, 69
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Частотная коррекция входов нейросети"
+FONT 8, "Arial"
+BEGIN
+    EDITTEXT        IDC_NUM_INI,75,18,45,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_NUM_FIN,75,31,45,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_FR_CORR_DB,75,4,45,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Номер начальный:",-1,9,20,63,9,NOT WS_GROUP
+    LTEXT           "Номер конечный:",-1,9,32,59,9,NOT WS_GROUP
+    LTEXT           "Усиление (дБ):",-1,9,7,53,9,NOT WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,49,49,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,109,49,50,14
+END
+
+IDD_PAR_FREQ_CORR_SPECTR DIALOG DISCARDABLE  0, 0, 161, 69
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Частотная коррекция спектра"
+FONT 8, "Arial"
+BEGIN
+    EDITTEXT        IDC_FREQ_INI,96,17,45,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_FREQ_FIN,96,30,45,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_FR_CORR_DB,96,2,45,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Частота начальная (Гц):",IDC_STATIC,8,19,84,9,NOT 
+                    WS_GROUP
+    LTEXT           "Частота конечная (Гц):",IDC_STATIC,8,31,81,9,NOT 
+                    WS_GROUP
+    LTEXT           "Усиление (дБ):",IDC_STATIC,8,5,53,9,NOT WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,25,49,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,85,49,50,14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041904b0"
+        BEGIN
+            VALUE "Comments", "Программа для изучения нейросетевых алгоритмов в применении к задаче распознавания речи.\0"
+            VALUE "CompanyName", "Рогачёв А.Е., 11 класс, лицей 1580, Проект ""Шаг в будущее"", 2011 г.\0"
+            VALUE "FileDescription", "Программа распознавания речи на основе нейросетевых алгоритмов.\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Project\0"
+            VALUE "LegalCopyright", "Copyright © 2011\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Project.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Программа распознавания речи на основе нейросетевых алгоритмов. Рогачёв А.Е., © 2011.\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x419, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDBI_FILE_OPEN          BITMAP  DISCARDABLE     "Icon_FileOpen.bmp"
+IDBI_AMP_NORM           BITMAP  DISCARDABLE     "Icon_Amp.bmp"
+IDBI_SPECTR             BITMAP  DISCARDABLE     "Icon_Spct.bmp"
+IDBI_SIGNAL             BITMAP  DISCARDABLE     "Icon_Sign.bmp"
+IDBI_PROC               BITMAP  DISCARDABLE     "Icon_DoProc.bmp"
+IDBI_PLAY_SOUND         BITMAP  DISCARDABLE     "Icon_Sound.bmp"
+IDBI_CAPT_SOUND         BITMAP  DISCARDABLE     "Icon_SndCap.bmp"
+IDBI_TIME               BITMAP  DISCARDABLE     "Icon_Time.bmp"
+IDBIS_ACCEPT            BITMAP  DISCARDABLE     "Icon_AcceptS.bmp"
+IDBI_ADJUST             BITMAP  DISCARDABLE     "Icon_Adjust.bmp"
+IDBI_DBS_NNW            BITMAP  DISCARDABLE     "Icon_NNW_Train.bmp"
+IDBI_DELETE             BITMAP  DISCARDABLE     "Icon_Delete.bmp"
+IDBI_SAVE               BITMAP  DISCARDABLE     "Icon_Save.bmp"
+IDBI_ACCEPT             BITMAP  DISCARDABLE     "Icon_Accept.bmp"
+IDBI_INS                BITMAP  DISCARDABLE     "Icon_Ins.bmp"
+IDBI_ADD                BITMAP  DISCARDABLE     "Icon_Add.bmp"
+IDBI_NNW_SYN            BITMAP  DISCARDABLE     "Icon_NNW_Syn.bmp"
+IDBI_WATCH_NNW          BITMAP  DISCARDABLE     "Icon_WatchNNW.bmp"
+IDBI_NNW_INP            BITMAP  DISCARDABLE     "Icon_NNW_Inp.bmp"
+IDBI_SOUND_REC          BITMAP  DISCARDABLE     "Icon_SndRec.bmp"
+IDBI_WIN_TEXT           BITMAP  DISCARDABLE     "Icon_Text.bmp"
+IDBI_SET_TIME           BITMAP  DISCARDABLE     "Icon_SetTime.bmp"
+IDBI_NNW_VIEW           BITMAP  DISCARDABLE     "Icon_NNW_View.bmp"
+IDBI_NNW_STAT           BITMAP  DISCARDABLE     "Icon_NNW_Stat.bmp"
+IDBI_BROWSE             BITMAP  DISCARDABLE     "Icon_Browse.bmp"
+IDBI_NNW_ERR_TRAIN      BITMAP  DISCARDABLE     "Icon_NNW_ErrTrain.bmp"
+IDBI_NNW_ERR_CNTRL      BITMAP  DISCARDABLE     "Icon_NNW_ErrCntrl.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PAR_FREQ_CORR_PEAKS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 177
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Err_CanNotOpen      "Невозможно открыть файл WAV !"
+    IDS_Err_WrongFormatWAV  "Неправильный формат !"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Err_ReadFile        "Невозможно прочесть файл !"
+    IDS_Err_CanNotSave      "Невозможно сохранить файл !"
+    IDS_Err_WriteFile       "Невозможно записать файл !"
+    IDS_Mess_LargeTimeWin   "Слишком большое число точек во временном окне !"
+    IDS_Mess_LargeFreqArr   "Слишком большой размер массива по частоте !\nУменьшите длительность временного окна."
+    IDS_Mess_LargeTimeArr   "Слишком большой размер массива по времени !\nУвеличьте шаг по времени."
+    IDS_Mess_FileNotOpen    "Файл WAV ещё не открыт !"
+    IDS_Mess_CanNotExit     "Нельзя выйти,\nпока выполняется действие !"
+    IDS_Quest_FileExists    "Файл с данным именем уже существует ! Переписать ?"
+    IDS_Err_LongFilePathName "Слишком длинное имя файла (включая путь) !"
+    IDS_Err_WrongExtFile    "Тип (расширение) файла должно\nв точности соответствовать заданному !"
+    IDS_Err_AmbigChoiceExt  "Тип (расширение) выбранного файла\nне соответствует выбранному типу (расширению)\nв списке типов файлов !\nПовторите выбор файла в списке\nили наберите расширение в строке редактирования."
+    IDS_Mess_WarningWrongExt 
+                            "ПРЕДУПРЕЖДЕНИЕ:\nтип файла не соответствует\nсписку допустимых типов !"
+    IDS_Filt_Sound          "Звуковой файл|*.wav|"
+    IDS_HeaderDlg_OpenWav   "Выбор звукового файла"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_HeaderDlg_OpenDBF   "Открытие базы данных для тренировки нейронной сети"
+    IDS_Filt_DBS_Files      "База данных с именами файлов|*.dbf|"
+    IDS_FunAct_Sigmoid      "Сигмоидная"
+    IDS_FunAct_SigmBiPolar  "Сигмоидная биполярная"
+    IDS_FunAct_HypTang      "Гиперболический тангенс"
+    IDS_Mess_NoSampTrainNNW "Не задано образцов для тренировки сети\nили неверно заданы диапазоны образцов !"
+    IDS_Filt_ParNNW_Vowel   "Файл параметров нейронной сети для гласных звуков|*.pnwv|"
+    IDS_HeaderDlg_OpenParNNW "Открытие файла параметров нейронной сети"
+    IDS_HeaderDlg_SaveParNNW "Сохранение файла параметров нейронной сети"
+    IDS_Err_DLLProg         "Ошибка при загрузке функций ""*.dll"" библиотеки !"
+    IDS_Err_NoFileDLL       "Отсутствует файл библиотеки ""*.dll"" !"
+    IDS_Err_LoadDLL         "Ошибка при загрузке библиотеки ""*.dll"" !"
+    IDS_HeaderAlphaConst    "Постоянный шаг:"
+    IDS_HeaderAlphaAdapt    "Адаптивный шаг:"
+    IDS_Err_NoMemBitmap     "Недостаточно памяти для изображения !"
+    IDS_Filt_ParNNW_Cons    "Файл параметров нейронной сети для согласных звуков|*.pnwc|"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Filt_NNW_Vowel      "Файл нейронной сети для гласных звуков|*.nnwv|"
+    IDS_Filt_NNW_Cons       "Файл нейронной сети для согласных звуков|*.nnwc|"
+    IDS_HeaderDlg_OpenNNW   "Открытие файла нейронной сети"
+    IDS_HeaderDlg_SaveNNW   "Сохранение файла нейронной сети"
+    IDS_NewNNW              "Новая сеть"
+    IDS_SpectrWinName_Gauss "Функция Гаусса"
+    IDS_SpectrWinName_CosHann "Косинусоидальное (Ханна)"
+    IDS_SpectrWinName_Hamming "Хэмминга"
+    IDS_SpectrWinName_BlackmanHarris "Блэкмена-Харриса"
+    IDS_SpectrWinName_KaizerBessel "Кайзера-Бесселя"
+    IDS_SpectrWinName_NoSmooth "Без сглаживания (прямоугольное)"
+    IDS_Quest_NoSavedNNW    "Имеется несохранённая нейронная сеть:\n'%s' для звуков: '%s' !\nСохранить ?"
+    IDS_SoundsVowel         "Гласные"
+    IDS_SoundsConsonant     "Согласные"
+    IDS_BtnNNWWork_Work     "Работа"
+    IDS_BtnNNWWork_Net      "Структура"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BtnNNWAxons_Amp     "Аксоны"
+    IDS_BtnNNWAxons_Excit   "Возбуждение"
+    IDS_Mess_ErrConfNNW     "Не задана конфигурация нейронной сети !"
+    IDS_Mess_ErrLoadNNW     "Ошибка при чтении файла нейронной сети !"
+    IDS_NameRecord          "Запись"
+    IDS_HeaderDlg_SaveWav   "Сохранение звукового файла"
+    IDS_ErrParFindPeaks     "Ошибка в параметрах выделения спектральных линий !"
+    IDS_Err_CanNotReadDBS   "Невозможно прочитать файл базы данных по звукам *.dbs !"
+    IDS_Err_NoFileDBS       "Отсутствует файл базы данных по звукам *.dbs !"
+    IDS_Err_NoFileWAV       "Отсутствует звуковой файл *.wav !"
+    IDS_Err_CanNotReadWAV   "Невозможно прочитать звуковой файл *.wav !"
+    IDS_Btn_WinText         "Текст"
+    IDS_Btn_WinClose        "Закрыть"
+    IDS_Btn_Record          "Запись"
+    IDS_Btn_Stop            "Остановить"
+    IDS_Btn_Recogn          "Распознавание"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Btn_Sound           "Прослушать"
+    IDS_Btn_Block           "Блокировать"
+    IDS_Btn_Enable          "Разрешить"
+    IDS_Btn_WinViewNet      "Сеть"
+    IDS_MethTrain_Sequent   "Последовательный"
+    IDS_MethTrain_GroupSearch "Групповой метод поиска"
+    IDS_Btn_Train           "Тренировка"
+    IDS_MethTrain_SeqLay    "Последовательный послойный"
+    IDS_MethTrain_GroupAdapt "Групповой, в том числе с адаптивным шагом"
+    IDS_MethTrain_SeqRep    "Последовательный с многократным распространением ошибки"
+    IDS_Btn_PreProc         "Фурье и выделение линий"
+    IDS_Err_NoTrainData     "Не заданы образцы для тренировки сети !"
+    IDS_Filt_NNW_Spectr     "Файл нейронной сети для обработки всего спектра|*.nnws|"
+    IDS_SoundsSpectr        "Для всего спектра"
+    IDS_Mess_NoPreProc      "Проведите предварительную обработку -\nпреобразование Фурье и выделение спектральных линий !"
+    IDS_Btn_SynthSound      "Синтез"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Filt_ParNNW_Spectr  "Файл параметров нейронной сети для всего спектра|*.pnws|"
+    IDS_SpectrWinName_Blackman "Блэкмена"
+    IDS_SpectrWinName_Natall "Наталла"
+    IDS_SpectrWinName_BlNatall "Блэкмена-Наталла"
+    IDS_SpectrWinName_FlatTop "С плоской вершиной"
+    IDS_SpectrWinName_Barlett "Барлетта (треугольное)"
+    IDS_SpectrWinName_BarHann "Барлетта-Ханна"
+    IDS_SpectrWinName_Lanczos "Ланкзоса sin(x)/x"
+    IDS_SpectrWinName_Cos   "Косинусоидальное с плоской вершиной"
+    IDS_Btn_Processing      "Обработка"
+    IDS_FunAct_Log          "Логарифмическая"
+    IDS_FunAct_Lin          "Линейная"
+    IDS_Err_DiffParNNW      "Параметры нейронной сети отличаются от заданных !"
+    IDS_Mess_ZeroAdaptStep  "Адаптивный шаг равен нулю !\nЗадайте нижний предел адаптивного шага."
+    IDS_MessDiff_SPS        "Файл %s записан с другой частотой дискретизации !"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_Btn_SetData         "Входные данные"
+    IDS_Mess_NoInpData      "Нажмите кнопку заполнения массива входных данных для нейронной сети\nили измените параметр ввода данных для нейронной сети !"
+    IDS_WrongIntervalsData  "Проверьте расстановку интервалов образцов звуков !"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
